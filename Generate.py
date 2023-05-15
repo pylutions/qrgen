@@ -73,8 +73,9 @@ if __name__ == "__main__":
     show_sidebar()
     st.title("URL to QR Code")
     url = st.text_input("Enter a URL:")
-    fill_color = st.color_picker("Select a fill color", "#000000")
-    back_color = st.color_picker("Select a background color", "#FFFFFF")
+    col1, col2 = st.columns(2)
+    fill_color = col1.color_picker("Select a fill color", "#000000")
+    back_color = col2.color_picker("Select a background color", "#FFFFFF")
     col1, col2 = st.columns(2)
 
     # File uploader
