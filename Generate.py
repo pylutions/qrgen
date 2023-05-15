@@ -63,10 +63,10 @@ def add_icon(qr_img, icon_img):
 
 
 def generate_qr_code(url, fill_color, back_color, icon_path):
-    qr = qrcode.QRCode(version=1, box_size=10, border=5)
+    qr = qrcode.QRCode(version=1, box_size=100, border=4)
     qr.add_data(url)
     qr.make(fit=True)
-    qr_img = qr.make_image(fill_color=fill_color, back_color=back_color)
+    qr_img = qr.make_image(fill_color=fill_color, back_color=back_color, scale=10)
     if icon_path:
         icon_img = Image.open(icon_path).convert("RGBA")
         qr_img = add_icon(qr_img, icon_img)
