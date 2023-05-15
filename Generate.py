@@ -84,13 +84,13 @@ if __name__ == "__main__":
 
     # URL input
     with col2:
-        url = st.text_input("Enter image URL (optional)")
-        if url:
-            if not url.endswith(('png', 'jpg', 'jpeg')):
+        img_url = st.text_input("Enter image URL (optional)")
+        if img_url:
+            if not img_url.endswith(('png', 'jpg', 'jpeg')):
                 st.warning("Invalid file type. Please provide a URL to a PNG, JPG, or JPEG image.")
             else:
                 try:
-                    icon_path = get_image_from_url(url)
+                    icon_path = get_image_from_url(img_url)
                 except:
                     st.warning("Failed to fetch the image from the provided URL.")
 
