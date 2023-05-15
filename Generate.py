@@ -6,32 +6,12 @@ import numpy as np
 import imageio
 
 
-def add_icon2(qr_img, icon_img):
-    icon_size = int(qr_img.size[0] * 0.2)
-    icon_img = icon_img.resize((icon_size, icon_size))
-    x = int((qr_img.size[0] - icon_size) / 2)
-    y = int((qr_img.size[1] - icon_size) / 2)
-    qr_img.paste(icon_img, (x, y))
-    return qr_img
-
-def add_icon3(qr_img, icon_img):
-    icon_size = int(qr_img.size[0] * 0.2)
-    icon_img = icon_img.resize((icon_size, icon_size), Image.ANTIALIAS)  # Apply antialiasing
-    x = int((qr_img.size[0] - icon_size) / 2)
-    y = int((qr_img.size[1] - icon_size) / 2)
-    qr_img.paste(icon_img, (x, y))
-    return qr_img
-
 def add_icon(qr_img, icon_img):
     icon_size = int(qr_img.size[0] * 0.2)
     icon_img = icon_img.resize((icon_size, icon_size), Image.ANTIALIAS)  # Apply antialiasing
-    mask = Image.new("L", icon_img.size, 0)
-    draw = ImageDraw.Draw(mask)
-    draw.ellipse((0, 0, icon_size, icon_size), fill=255)
-    icon_img.putalpha(mask)
     x = int((qr_img.size[0] - icon_size) / 2)
     y = int((qr_img.size[1] - icon_size) / 2)
-    qr_img.paste(icon_img, (x, y), icon_img)
+    qr_img.paste(icon_img, (x, y), mask=icon_img)
     return qr_img
 
 
