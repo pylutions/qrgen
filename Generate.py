@@ -7,6 +7,7 @@ import imageio
 from streamlit.components.v1 import html
 import requests
 from io import BytesIO
+import pyperclip
 
 
 def hide_header():
@@ -51,6 +52,12 @@ def more():
     '''
     st.markdown(button_html, unsafe_allow_html=True)
 
+
+# Function to copy QR code to clipboard
+def copy_qr_code(img_io):
+    img_data = img_io.getvalue()
+    pyperclip.copy(img_data)
+    #st.success('QR Code copied to clipboard!')
 
 
 def add_icon(qr_img, icon_img):
@@ -114,6 +121,8 @@ if __name__ == "__main__":
             img_bytes.seek(0)
             #st.image(img_bytes, caption="QR Code", use_column_width=True)
             st.image(img_bytes, caption="QR Code")
+            st.download_button('Download QR Code', img_bytes, file_name='qr_code.png', mime='image/png')
+
         else:
             st.warning("Please enter a URL to generate the QR code.")
     bmac()
