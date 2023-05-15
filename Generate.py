@@ -41,6 +41,19 @@ def bmac():
     )
 
 
+def more():
+    link = '<div style="background-color:white;width:500;height:80;position: fixed; bottom: 5%; right: 0%;"><a href="https://pylutions.com" target="_blank">more...</a></div>'
+    button_html = '''
+        <div style="position: fixed; bottom: 5%; right: -1%;">
+            <a href="https://pylutions.com" target="_blank" style="display: inline-block; background-color: #62c07f; color: black; padding: 12px 24px; font-size: 16px; border-radius: 5px; text-decoration: none;">
+                more...
+            </a>
+        </div>
+    '''
+    st.markdown(button_html, unsafe_allow_html=True)
+
+
+
 def add_icon(qr_img, icon_img):
     icon_size = int(qr_img.size[0] * 0.2)
     icon_img = icon_img.resize((icon_size, icon_size), Image.ANTIALIAS)  # Apply antialiasing
@@ -104,3 +117,4 @@ if __name__ == "__main__":
         else:
             st.warning("Please enter a URL to generate the QR code.")
     bmac()
+    more()
