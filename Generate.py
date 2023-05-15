@@ -112,7 +112,8 @@ if __name__ == "__main__":
             img_bytes = io.BytesIO()
             img.save(img_bytes, format='PNG')
             img_bytes.seek(0)
-            st.image(img_bytes, caption="QR Code", use_column_width=True)
+            #st.image(img_bytes, caption="QR Code", use_column_width=True)
+            st.image(img_bytes, caption="QR Code")
         else:
             st.warning("Please enter a URL to generate the QR code.")
     bmac()
