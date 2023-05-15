@@ -5,6 +5,8 @@ import io
 import numpy as np
 import imageio
 from streamlit.components.v1 import html
+import requests
+from io import BytesIO
 
 
 def hide_header():
@@ -59,15 +61,38 @@ def generate_qr_code(url, fill_color, back_color, icon_path):
     return qr_img
 
 
+def get_image_from_url(url):
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+    return img
+
+
 if __name__ == "__main__":
-    st.set_page_config(page_title="QR Generator", page_icon="icon.ico", layout="wide")
+    st.set_page_config(page_title="QR Code Generator", page_icon="icon.ico", layout="wide")
     hide_header()
     show_sidebar()
     st.title("URL to QR Code")
     url = st.text_input("Enter a URL:")
     fill_color = st.color_picker("Select a fill color", "#000000")
     back_color = st.color_picker("Select a background color", "#FFFFFF")
-    icon_path = st.file_uploader("Select an icon image (optional)", type=["png", "jpg", "jpeg"])
+    col1, col2 = st.columns(2)
+
+    # File uploader
+    with col1:
+        icon_path = st.file_uploader("Select an icon image (optional)", type=["png", "jpg", "jpeg"])
+
+    # URL input
+    with col2:
+        url = st.text_input("Enter image URL (optional)")
+        if url:
+            if not url.endswith(('png', 'jpg', 'jpeg')):
+                st.warning("Invalid file type. Please provide a URL to a PNG, JPG, or JPEG image.")
+            else:
+                try:
+                    icon_path = get_image_from_url(url)
+                except:
+                    st.warning("Failed to fetch the image from the provided URL.")
+
     if st.button("Generate QR Code"):
         if url:
             img = generate_qr_code(url, fill_color, back_color, icon_path)
