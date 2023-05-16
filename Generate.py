@@ -44,13 +44,28 @@ def bmac():
 
 def more():
     button_html = '''
-        <div style="position: fixed; bottom: 15%; right: -1%;">
+        <div style="position: fixed; bottom: 20%; right: -1%;">
             <a href="https://pylutions.com/#products" target="_blank" style="display: inline-block; background-color: #62c07f; color: black; padding: 12px 48px; font-size: 16px; border-radius: 5px; text-decoration: none;">
                 more...
             </a>
         </div>
     '''
     st.markdown(button_html, unsafe_allow_html=True)
+
+def ga():
+    st.markdown(
+        """
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-JEXQZEME08"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+            
+              gtag('config', 'G-JEXQZEME08');
+            </script>
+        """, unsafe_allow_html=True)
+
 
 
 # Function to copy QR code to clipboard
@@ -89,6 +104,7 @@ def get_image_from_url(url):
 if __name__ == "__main__":
     st.set_page_config(page_title="QR Code Generator", page_icon="icon.ico", layout="wide")
     hide_header()
+    ga()
     show_sidebar()
     st.title("URL to QR Code")
     url = st.text_input("Enter a URL:")
