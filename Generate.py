@@ -142,5 +142,5 @@ if __name__ == "__main__":
 
         else:
             st.warning("Please enter a URL to generate the QR code.")
-    bmac()
-    more()
+    #bmac()
+    #more()
