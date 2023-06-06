@@ -86,7 +86,7 @@ def add_icon(qr_img, icon_img):
 
 
 def generate_qr_code(url, fill_color, back_color, icon_path):
-    qr = qrcode.QRCode(version=1, box_size=100, border=4)
+    qr = qrcode.QRCode(version=1, box_size=20, border=4)
     qr.add_data(url)
     qr.make(fit=True)
     qr_img = qr.make_image(fill_color=fill_color, back_color=back_color, scale=10)
